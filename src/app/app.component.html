@@ -1,8 +1,15 @@
 <h1>Users List</h1>
 
 <ul>
-  <li *ngFor="let user of users$ | async">
-    {{ user.name }} - {{ user.email }} - Disabled: {{ user.disabled }}
-    <button (click)="updateUserStatus(user.id, user.disabled)">Toggle Status</button>
+  <li *ngFor="let user of users; let i = index">
+      {{ user.name }} - {{ user.email }} - Disabled: {{ user.disabled }}
+      <button (click)="updateUserStatus(user.id, user.disabled)">User Status</button>
   </li>
 </ul>
+
+
+
+
+
+
+

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { FirebaseService } from './firebase.service';
 
 @Component({
@@ -9,15 +8,20 @@ import { FirebaseService } from './firebase.service';
   standalone: true
 })
 export class AppComponent implements OnInit {
-  users$!: Observable<any[]>;
+  users: any[] = [];
 
-  constructor(private firebaseService: FirebaseService) {}
- 
+  constructor(private firebaseService: FirebaseService) { }
+
   ngOnInit(): void {
-    this.users$ = this.firebaseService.getUsers();
+    this.firebaseService.getUsers().subscribe(users => {
+      this.users = users;
+    });
   }
 
   updateUserStatus(userId: string, disabled: boolean) {
     this.firebaseService.updateUserStatus(userId, !disabled);
   }
 }
+
+
+

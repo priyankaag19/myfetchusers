@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Firestore, collection, collectionData, doc, DocumentData, DocumentReference, updateDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,13 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class FirebaseService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: Firestore) { }
 
   getUsers(): Observable<any[]> {
-    return this.firestore.collection('users').valueChanges();
+    const usersCollection = collection(this.firestore, 'users');
+    return collectionData(usersCollection);
   }
 
   updateUserStatus(userId: string, disabled: boolean): Promise<void> {
-    return this.firestore.collection('users').doc(userId).update({ disabled });
+    const userDocRef: DocumentReference<DocumentData> = doc(this.firestore, 'users', userId);
+    return updateDoc(userDocRef, { disabled });
   }
 }
+
