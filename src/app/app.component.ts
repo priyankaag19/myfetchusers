@@ -17,10 +17,6 @@ export class AppComponent implements OnInit {
       this.users = users;
     });
   }
-
-  updateUserStatus(userId: string, disabled: boolean) {
-    this.firebaseService.updateUserStatus(userId, !disabled);
-  }
 }
 
 

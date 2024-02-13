@@ -13,10 +13,5 @@ export class FirebaseService {
     const usersCollection = collection(this.firestore, 'users');
     return collectionData(usersCollection);
   }
-
-  updateUserStatus(userId: string, disabled: boolean): Promise<void> {
-    const userDocRef: DocumentReference<DocumentData> = doc(this.firestore, 'users', userId);
-    return updateDoc(userDocRef, { disabled });
-  }
 }
 

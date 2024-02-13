@@ -1,15 +1,9 @@
 <h1>Users List</h1>
 
-<ul>
-  <li *ngFor="let user of users; let i = index">
-      {{ user.name }} - {{ user.email }} - Disabled: {{ user.disabled }}
-      <button (click)="updateUserStatus(user.id, user.disabled)">User Status</button>
-  </li>
-</ul>
-
-
-
-
-
-
-
+@for (user of users; track user.id) {
+{{ user.name }} -
+{{ user.mail }} - {{ user.roles }} -- Disabled: {{ user.disabled }}
+<button [disabled]="user.disabled">User Status</button>
+}@empty {
+Empty list of users
+}

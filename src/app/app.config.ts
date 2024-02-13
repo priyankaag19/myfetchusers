@@ -23,6 +23,6 @@ export const appConfig: ApplicationConfig = {
     ScreenTrackingService, 
     importProvidersFrom(provideFirestore(() => getFirestore())), 
     importProvidersFrom(provideStorage(() => getStorage())),
-    provideAnimationsAsync('noop')
+    provideAnimationsAsync('noop'), provideAnimationsAsync()
   ]
 };
